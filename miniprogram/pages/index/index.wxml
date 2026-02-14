@@ -1,0 +1,64 @@
+<view class="container">
+  <view class="header">
+    <view class="title">🌙 AI解梦大师</view>
+    <view class="subtitle">GLM-4.7-Flash·深度思考版</view>
+  </view>
+
+  <view class="card">
+    <view class="input-label">描述你的梦境</view>
+    <textarea 
+      class="dream-input" 
+      placeholder="请输入你的梦境内容（最多500字）..." 
+      value="{{dream}}"
+      bindinput="onInput"
+      maxlength="500"
+      auto-height
+    />
+    <view class="word-count">{{dream.length}}/500</view>
+  </view>
+
+  <button 
+    class="analyze-btn" 
+    bindtap="analyze" 
+    disabled="{{loading}}"
+    loading="{{loading}}"
+  >
+    {{loading ? '深度思考中...' : '开始解梦'}}
+  </button>
+
+  <view class="free-tip">
+    💡 使用智谱AI最新GLM-4.7-Flash模型
+  </view>
+
+  <view class="result-area {{result ? 'show' : ''}}" wx:if="{{result}}">
+    <view class="result-header">
+      <view class="result-title">🔮 解梦结果</view>
+      <view class="model-badge">
+        <text class="badge badge-primary">GLM-4.7-Flash</text>
+        <text class="badge badge-think">深度思考</text>
+      </view>
+    </view>
+
+    <view class="original-dream">
+      <view class="original-label">梦境原文</view>
+      <view class="original-text">{{dream}}</view>
+    </view>
+
+    <view class="analysis-content">
+      <text>{{analysis}}</text>
+    </view>
+
+    <view class="action-buttons">
+      <button class="action-btn share-btn" open-type="share">
+        分享给好友
+      </button>
+      <button class="action-btn again-btn" bindtap="reset">
+        再解一个
+      </button>
+    </view>
+  </view>
+
+  <view class="footer">
+    <view class="footer-text">Powered by 智谱AI GLM-4.7-Flash</view>
+  </view>
+</view>
